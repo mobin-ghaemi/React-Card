@@ -35,12 +35,15 @@ const Products = () => {
         if (count < 1) {
             alert("Buy Something Stupid !")
         } else {
-            const newArray = [{ title : title , count : count , ID}]
+            const filterd = products.find(index => index.id === id)
+            const newArray = [...counter,filterd]
+            console.log(newArray);
             setCounter(newArray)
         }
     }
     const deleteHandler = (id) => {
-        const filterd = counter.filter(index => index.ID !== id)
+        console.log(id);
+        const filterd = counter.filter(index => index.id !== id)
         setCounter(filterd)
     }
 
@@ -57,10 +60,10 @@ const Products = () => {
         </div>
         <div>Result :
             {counter.map(product => {
-                return <Show key={product.ID} 
+                return <Show key={product.id} 
                 title={product.title} 
                 count={product.count} 
-                delHandler={() => deleteHandler(product.ID)}/>
+                delHandler={() => deleteHandler(product.id)}/>
             })}
         </div>
         </>
