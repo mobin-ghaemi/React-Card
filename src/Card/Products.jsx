@@ -12,13 +12,11 @@ const Products = () => {
         // {title : "Two" , count : 0 , id : 2}
     ])
 
-
-
     const plusHandler = (id) => {
-        const onlyThis = products.find(product => product.id === id)
-        const array = [onlyThis]
-        onlyThis.count++
-        setProducts(array)
+        const index = products.find(product => product.id === id)
+        const newArray = [...products]
+        index.count++
+        setProducts(newArray)
     }   
     const minusHandler = (id) => {
         const onlyThis = products.find(product => product.id === id)
@@ -37,7 +35,8 @@ const Products = () => {
         if (count < 1) {
             alert("Buy Something Stupid !")
         } else {
-            setCounter([{ title : title , count : count , ID}])
+            const newArray = [{ title : title , count : count , ID}]
+            setCounter(newArray)
         }
     }
     const deleteHandler = (id) => {
