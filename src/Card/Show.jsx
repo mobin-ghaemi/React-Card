@@ -4,7 +4,7 @@ const Show = (props) => {
     return (
         <div className="show">
             
-            <p>{props.title}</p> <p>{props.count}</p>
+            <p>{props.title}</p> <p>{props.quantity}</p>
             <span onClick={props.delHandler} className="icon"><BiTrash /></span>
 
         </div>

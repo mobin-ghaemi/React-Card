@@ -8,8 +8,8 @@ const Products = () => {
         {title : "Dell XPS" , count : 0 , id : 2},
     ])
     const [counter , setCounter ] = useState([
-        // {title : "One" , count : 0 , id : 1},
-        // {title : "Two" , count : 0 , id : 2}
+        // {title : "One" , quantity : 0 , id : 1},
+        // {title : "Two" , quantity : 0 , id : 2}
     ])
 
     const plusHandler = (id) => {
@@ -19,29 +19,32 @@ const Products = () => {
         setProducts(newArray)
     }   
     const minusHandler = (id) => {
-        const onlyThis = products.find(product => product.id === id)
-        const array = [onlyThis]
-        onlyThis.count--
-        onlyThis.count < 0 ? onlyThis.count = 1:
-        setProducts(array)
+        const index = products.find(product => product.id === id)
+        const newArray = [...products]
+        index.count--
+        setProducts(newArray)
     }
     const buyHandler = (id) => {
-        let filterd = products.filter(index => index.id === id);
-        filterd = filterd[0];
+        const filterd = products.filter(index => index.id === id);
 
-        const [title , count , ID] = 
-        [filterd.title , filterd.count , filterd.id];
+        let obj = {
+            title : filterd[0].title ,
+            quantity : filterd[0].count,
+            id : filterd[0].id
+        }
 
 
-        setCounter([...counter,filterd])
+        setCounter([...counter,obj])
 
-        counter.map(index => {
-            if (index.title === filterd.title) {
-                setCounter([filterd])
+
+        counter.filter(index => {
+            if (index.title === obj.title) {
+                setCounter(products)
             } else {
-                console.log("noch");
+                console.log("no");
             }
         })
+
     }
     const deleteHandler = (id) => {
         console.log(id);
@@ -64,7 +67,7 @@ const Products = () => {
             {counter.map((product , index) => {
                 return <Show key={index} 
                 title={product.title} 
-                count={product.count} 
+                quantity={product.quantity} 
                 delHandler={() => deleteHandler(product.id)}/>
             })}
         </div>
