@@ -33,17 +33,18 @@ const Products = () => {
             id : filterd[0].id
         }
 
+        const copyCounter = [...counter]
+        const desireIndex = copyCounter.findIndex( hi => hi.id === obj.id)
+        console.log(desireIndex);
 
-        setCounter([...counter,obj])
+        if(desireIndex !== -1){
+            copyCounter[desireIndex] = obj
+        } else {
+            copyCounter.push(obj)
+        }
 
 
-        counter.filter(index => {
-            if (index.title === obj.title) {
-                setCounter(products)
-            } else {
-                console.log("no");
-            }
-        })
+        setCounter(copyCounter)
 
     }
     const deleteHandler = (id) => {
